@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex,nofollow" />
+  <meta name="theme-color" content="#f2f7fb" />
+  <title>Verifying owner sign-in · Nitin Singh</title>
+  <style>
+    :root{font-family:Manrope,Arial,sans-serif;color:#203342;background:#f1f6fa}*{box-sizing:border-box}body{min-height:100vh;margin:0;display:grid;place-items:center;padding:24px;background:radial-gradient(circle at 15% 15%,#d9e9f0,transparent 40%),#f1f6fa}.card{width:min(480px,100%);padding:34px;border:1px solid #d7e1e8;background:rgba(255,255,255,.84);box-shadow:0 22px 70px rgba(36,61,80,.12)}.eyebrow{font:11px monospace;letter-spacing:.12em;color:#567384}.card h1{font-size:clamp(25px,6vw,34px);letter-spacing:-.05em;margin:14px 0}.card p{font-size:14px;line-height:1.8;color:#556a78}.status{margin-top:22px;padding:13px 15px;border-left:3px solid #338a78;background:#eaf4f1;font-size:13px;line-height:1.6}.status.error{border-color:#bc5959;background:#f9eeee;color:#8b3434}.back{display:inline-flex;margin-top:20px;color:#203f50;font-size:13px;text-decoration:none;border-bottom:1px solid #7ba5aa;padding-bottom:3px}
+  </style>
+</head>
+<body>
+  <main class="card">
+    <span class="eyebrow">NITIN SINGH / OWNER ACCESS</span>
+    <h1>Verifying your sign-in.</h1>
+    <p>This one-time sign-in link is being checked before the portfolio editor is unlocked.</p>
+    <div class="status" id="status" role="status" aria-live="polite">Connecting securely to Supabase…</div>
+    <a class="back" href="../index.html" id="back" hidden>Return to portfolio ↗</a>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../cloud-config.js"></script>
+  <script>
+    (async () => {
+      const status = document.getElementById('status');
+      const back = document.getElementById('back');
+      const showError = (message) => {
+        status.classList.add('error');
+        status.textContent = message;
+        back.hidden = false;
+      };
+      try {
+        const cfg = window.PORTFOLIO_CLOUD_CONFIG || {};
+        if (!cfg.enabled || !cfg.supabaseUrl || !cfg.supabaseAnonKey || !cfg.ownerEmail) {
+          throw new Error('Owner sign-in is not configured yet. Complete cloud-config.js and the Supabase setup first.');
+        }
+        if (!window.supabase?.createClient) throw new Error('The Supabase SDK did not load. Check your internet connection and try again.');
+        const query = new URLSearchParams(window.location.search);
+        const tokenHash = query.get('token_hash');
+        const type = query.get('type') || 'email';
+        const code = query.get('code');
+
+        const client = window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey, {
+          auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: false, flowType: 'pkce' }
+        });
+        let data;
+        if (code) {
+          // Supabase's default Magic Link template commonly returns a PKCE ?code=... callback.
+          const result = await client.auth.exchangeCodeForSession(code);
+          if (result.error) throw result.error;
+          data = result.data;
+        } else if (tokenHash) {
+          // Also support the token_hash callback used by a customised Supabase email template.
+          const result = await client.auth.verifyOtp({ token_hash: tokenHash, type });
+          if (result.error) throw result.error;
+          data = result.data;
+        } else {
+          // Support callbacks where the SDK has already parsed an implicit session into the URL.
+          const result = await client.auth.getSession();
+          if (result.error) throw result.error;
+          if (!result.data?.session) throw new Error('The sign-in link has no usable verification code. Return to the portfolio and request a new owner sign-in link.');
+          data = { session: result.data.session, user: result.data.session.user };
+        }
+        const verifiedEmail = String(data?.user?.email || data?.session?.user?.email || '').trim().toLowerCase();
+        const ownerEmail = String(cfg.ownerEmail).trim().toLowerCase();
+        if (!verifiedEmail || verifiedEmail !== ownerEmail) {
+          await client.auth.signOut();
+          throw new Error('This account is not the configured portfolio owner. Editing remains locked.');
+        }
+        status.textContent = 'Owner verified. Opening your portfolio editor…';
+        window.location.replace(new URL('../index.html', window.location.href).href);
+      } catch (error) {
+        console.error('Owner authentication failed:', error);
+        showError(error.message || 'Could not verify this sign-in link. Request a new one and try again.');
+      }
+    })();
+  </script>
+</body>
+</html>
