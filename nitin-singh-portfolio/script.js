@@ -390,7 +390,7 @@
     menuToggle.setAttribute('aria-expanded', String(open));
     menuToggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
   });
-  nav.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => { nav.classList.remove('open'); menuToggle.setAttribute('aria-expanded', 'false'); }));
+  nav.querySelectorAll('a, button').forEach((item) => item.addEventListener('click', () => { nav.classList.remove('open'); menuToggle.setAttribute('aria-expanded', 'false'); }));
 
   // Gentle card tilt, disabled on touch devices.
   if (!reduceMotion && window.matchMedia('(pointer:fine)').matches) {
@@ -1264,13 +1264,44 @@
       return;
     }
     if (!cfg.enabled || !cfg.supabaseUrl || !cfg.supabaseAnonKey || !cfg.ownerEmail) { cloudSetupDialog(); return; }
-    openDialog('Owner sign-in', 'CLOUD / MAGIC LINK', `<p class="dialog-description">Only the configured owner email can unlock editing. Supabase sends a one-time sign-in link; visitor accounts remain read-only.</p><form id="cloudLoginForm" class="settings-form"><label class="form-field"><span>Owner email</span><input name="email" type="email" required value="${escapeHTML(cfg.ownerEmail || '')}" placeholder="you@example.com" /></label><div class="dialog-actions"><button class="button button-primary" type="submit">Send sign-in link</button></div></form>`, () => {
+    openDialog('Owner sign-in', 'CLOUD / EMAIL OTP', `<p class="dialog-description">Only the configured owner email can unlock editing. Enter the six-digit code sent to your inbox. Visitors remain read-only.</p><form id="cloudLoginForm" class="settings-form"><label class="form-field"><span>Owner email</span><input name="email" type="email" autocomplete="email" required value="${escapeHTML(cfg.ownerEmail || '')}" placeholder="you@example.com" /></label><div class="dialog-actions"><button class="button button-primary" type="submit">Send verification code</button></div></form>`, () => {
       $('#cloudLoginForm', dialogContent).addEventListener('submit', async (event) => {
-        event.preventDefault(); const email = new FormData(event.currentTarget).get('email').toString().trim();
+        event.preventDefault();
+        const form = event.currentTarget;
+        if (form.dataset.codeSent === 'true') return;
+        const email = new FormData(form).get('email').toString().trim();
         if (!cfg.ownerEmail || email.toLowerCase() !== cfg.ownerEmail.trim().toLowerCase()) { alert('Use the configured portfolio owner email.'); return; }
-        const { error } = await cloudClient.auth.signInWithOtp({ email, options: { emailRedirectTo: new URL('/auth/confirm.html', window.location.origin).href, shouldCreateUser: false } });
-        if (error) { alert(`Could not send sign-in link: ${error.message}`); return; }
-        closeDialog(); setCloudStatus(`A sign-in link was sent to ${email}. Open it in this browser to enable publishing.`, 'loading');
+        const submitButton = form.querySelector('button[type="submit"]');
+        submitButton.disabled = true; submitButton.textContent = 'Sending code…';
+        const { error } = await cloudClient.auth.signInWithOtp({ email, options: { shouldCreateUser: false } });
+        if (error) { submitButton.disabled = false; submitButton.textContent = 'Send verification code'; alert(`Could not send verification code: ${error.message}`); return; }
+        form.dataset.codeSent = 'true';
+        form.innerHTML = `<p class="dialog-hint">A six-digit verification code was sent to <strong>${escapeHTML(email)}</strong>. Enter it below. The code expires, so request a new one if needed.</p><label class="form-field"><span>Six-digit verification code</span><input name="token" type="text" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" minlength="6" required placeholder="123456" /></label><div class="dialog-actions"><button class="button button-primary" type="submit">Verify and unlock editing</button><button class="button button-outline" id="resendOwnerCode" type="button">Resend code</button></div>`;
+        form.addEventListener('submit', async (verifyEvent) => {
+          verifyEvent.preventDefault();
+          const token = new FormData(form).get('token').toString().replace(/\s/g, '');
+          if (!/^\d{6}$/.test(token)) { alert('Enter the six-digit code from your email.'); return; }
+          const verifyButton = form.querySelector('button[type="submit"]');
+          verifyButton.disabled = true; verifyButton.textContent = 'Verifying…';
+          const { data, error: verifyError } = await cloudClient.auth.verifyOtp({ email, token, type: 'email' });
+          if (verifyError) { verifyButton.disabled = false; verifyButton.textContent = 'Verify and unlock editing'; alert(`Verification failed: ${verifyError.message}`); return; }
+          if (String(data?.user?.email || data?.session?.user?.email || '').trim().toLowerCase() !== cfg.ownerEmail.trim().toLowerCase()) {
+            await cloudClient.auth.signOut(); alert('This account is not the configured portfolio owner.'); return;
+          }
+          closeDialog();
+          document.body.classList.add('owner-mode');
+          cloudSession = data.session;
+          setCloudStatus('Owner signed in · edits can now be published to the live portfolio.', 'success');
+          await loadCloudState(true);
+          mergeLocalDraftIntoPublishedState(preCloudLocalDraft);
+          await saveCloudState();
+        }, { once: true });
+        $('#resendOwnerCode', form).addEventListener('click', async () => {
+          const { error: resendError } = await cloudClient.auth.signInWithOtp({ email, options: { shouldCreateUser: false } });
+          if (resendError) alert(`Could not resend code: ${resendError.message}`);
+          else alert('A new verification code has been sent.');
+        });
+        form.querySelector('input[name="token"]').focus();
       });
     });
   }
