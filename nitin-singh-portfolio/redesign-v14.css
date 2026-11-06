@@ -80,3 +80,64 @@ a,button,.project-card,.repo-card,.social-card,.credential-card{transition:color
  .portrait-placeholder:after{transition:none}
  .credential-atmosphere-video{display:none}
 }
+
+
+/* Mobile readability and navigation refinements */
+@media (max-width: 760px) {
+  .hero-intro,
+  .hero-intro strong {
+    color: #263746 !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+  }
+
+  .nav-links {
+    background: #f6fafc !important;
+    background-color: #f6fafc !important;
+    opacity: 1 !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    border: 1px solid rgba(32, 53, 69, .22) !important;
+    box-shadow: 0 18px 40px rgba(20, 40, 58, .20) !important;
+    color: #203545 !important;
+    z-index: 1001 !important;
+  }
+
+  .nav-links > a {
+    color: #203545 !important;
+    opacity: 1 !important;
+    font-weight: 600;
+  }
+
+  .nav-links .owner-access,
+  .nav-links button.owner-access,
+  #ownerAccessBtn {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    width: 100% !important;
+    min-height: 46px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 12px 0 6px !important;
+    padding: 12px 16px !important;
+    border: 1px solid #9aafbd !important;
+    border-radius: 12px !important;
+    background: #e3edf3 !important;
+    color: #172d3c !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    z-index: 2 !important;
+  }
+
+  .theme-picker {
+    background: #ffffff !important;
+    opacity: 1 !important;
+    border-color: rgba(32, 53, 69, .20) !important;
+  }
+
+  .theme-picker-label {
+    color: #526575 !important;
+  }
+}
