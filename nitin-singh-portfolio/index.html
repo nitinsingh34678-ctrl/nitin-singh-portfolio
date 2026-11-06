@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#070d18" />
+  <meta name="description" content="Nitin Singh — B.Tech Computer Science student focused on AI, Machine Learning, software development and problem solving. Explore projects, GitHub work and LeetCode progress." />
+  <meta property="og:title" content="Nitin Singh — AI / ML Developer Portfolio" />
+  <meta property="og:description" content="A living portfolio of projects, code, learning and problem solving." />
+  <meta property="og:type" content="website" />
+  <title>Nitin Singh — AI / ML Developer Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="redesign-v14.css" />
+</head>
+<body class="cloud-locked" data-scene="home" data-theme="midnight">
+  <div class="world-backdrop" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true"><span id="progressBar"></span></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="site-header glass" id="top">
+    <a class="brand" href="#home" aria-label="Nitin Singh home"><span class="brand-mark">N</span><span>NITIN<span class="brand-dot">.</span></span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
+    <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+      <a href="#about">About</a><a href="#work">Projects</a><a href="#leetcode">LeetCode</a><a href="#skills">Skills</a><a href="#education">Education</a><a href="#notes">Notes</a><a href="#connect">Contact</a>
+      <div class="theme-picker" role="group" aria-label="Choose a portfolio theme">
+        <span class="theme-picker-label">THEME</span>
+        <button type="button" class="theme-swatch" data-theme-choice="midnight" aria-label="Midnight glass theme" aria-pressed="true" title="Midnight glass"></button>
+        <button type="button" class="theme-swatch theme-swatch-aurora" data-theme-choice="aurora" aria-label="Aurora violet theme" aria-pressed="false" title="Aurora violet"></button>
+        <button type="button" class="theme-swatch theme-swatch-ember" data-theme-choice="ember" aria-label="Ember dusk theme" aria-pressed="false" title="Ember dusk"></button>
+        <button type="button" class="theme-swatch theme-swatch-cyber" data-theme-choice="cyber" aria-label="Cyber green theme" aria-pressed="false" title="Cyber green"></button>
+      </div>
+    </nav>
+    <button class="nav-contact owner-access" id="ownerAccessBtn" type="button" aria-label="Owner sign-in">Owner sign-in <span>↗</span></button>
+    <a class="nav-contact" href="#connect">Let's connect <span>↗</span></a>
+  </header>
+
+  <main>
+    <section class="hero section-shell" id="home">
+      <div class="hero-grid" aria-hidden="true"><span class="grid-circle"></span><span class="grid-col" style="left:18%"></span><span class="grid-col" style="left:38%"></span><span class="grid-col" style="left:58%"></span><span class="grid-col" style="left:78%"></span></div>
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="status-dot"></span> COMPUTER SCIENCE · AI / ML · BUILDER</div>
+        <h1 class="hero-title">Engineering<br /><span class="gradient-text">ideas into</span><br />intelligent systems.</h1>
+        <p class="hero-intro">I'm <strong>Nitin Singh</strong> — a B.Tech Computer Science student focused on Artificial Intelligence &amp; Machine Learning. I enjoy turning concepts into working code, building practical projects, and strengthening the fundamentals behind good software.</p>
+        <div class="hero-actions"><a class="button button-primary" href="#work">Explore my work <span>↘</span></a><a class="text-link" href="#connect">Let's talk <span>↗</span></a></div>
+        <div class="hero-quick-links"><span class="mono-label">EXPLORE</span><button type="button" data-portal="github">GitHub ↗</button><button type="button" data-portal="leetcode">LeetCode ↗</button><a href="#work">Projects ↘</a></div>
+        <div class="hero-meta"><span>BASED IN INDIA</span><span class="meta-line"></span><span>BUILD · TEST · IMPROVE</span></div>
+      </div>
+      <div class="hero-visual" aria-label="Portrait of Nitin Singh">
+        <div class="portrait-placeholder" id="portraitFrame">
+          <img class="portrait-photo" src="assets/nitin-portrait-charcoal.png" alt="Nitin Singh wearing a charcoal shirt" />
+          <img class="portrait-reveal" src="assets/nitin-portrait-cream.png" alt="" aria-hidden="true" />
+          <img class="portrait-holo" src="assets/nitin-portrait-charcoal.png" alt="" aria-hidden="true" />
+          <div class="initials" id="portraitInitials" hidden>NS</div><span class="portrait-note" id="portraitNote" hidden>YOUR PHOTO GOES HERE</span>
+          <label class="portrait-upload" for="portraitUpload">＋ Change photo</label><input id="portraitUpload" type="file" accept="image/*" hidden />
+        </div>
+        <div class="profile-top"><span class="mono-label">PROFILE / 001</span><span class="live-indicator">AVAILABLE TO CONNECT</span></div>
+        <div class="profile-bottom"><div><span class="small-muted">CURRENT FOCUS</span><strong>AI / Machine Learning · C / C++ · DSA</strong></div><span class="profile-arrow">↗</span></div>
+        <div class="visual-caption">TOUCH OR HOVER THE PORTRAIT FOR A HOLOGRAPHIC SCAN</div>
+      </div>
+      <a class="scroll-cue" href="#about"><span class="scroll-line"></span> SCROLL TO EXPLORE</a>
+    </section>
+    <section class="intro-band section-shell" id="about">
+      <div class="section-kicker reveal"><span>01 / ABOUT</span><span class="kicker-line"></span><span>THE PERSON BEHIND THE CODE</span></div>
+      <div class="about-grid">
+        <h2 class="section-heading reveal">I like understanding <em>how things work</em> — then making something useful from that knowledge.</h2>
+        <div class="about-copy reveal">
+          <figure class="about-photo-card"><img src="assets/nitin-portrait-cream.png" alt="Nitin Singh in a cream sweater" loading="lazy" /><figcaption><span class="status-dot"></span> STUDENT · AI / ML</figcaption></figure>
+          <div class="about-copy-text"><p>I'm pursuing B.Tech in Computer Science with a focus on AI &amp; Machine Learning. My interests sit at the intersection of programming, data, and practical problem-solving.</p><p>I enjoy breaking a complex problem into smaller pieces, testing ideas, and improving a project one iteration at a time. This portfolio is a living record of that process.</p><div class="about-facts"><div><span class="fact-value">01</span><span class="fact-label">LEARN BY BUILDING</span></div><div><span class="fact-value">02</span><span class="fact-label">STAY CURIOUS</span></div><div><span class="fact-value">03</span><span class="fact-label">IMPROVE ITERATIVELY</span></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="work-section section-shell" id="work">
+      <div class="section-kicker reveal"><span>02 / SELECTED WORK</span><span class="kicker-line"></span><span>PROJECTS & EXPERIMENTS</span></div>
+      <div class="section-title-row reveal"><h2 class="section-heading">A few things<br /><em>I've been building.</em></h2><div class="section-side-actions"><p class="section-aside">Explore the idea behind each project, add your own screenshots, and connect a repository when you're ready to share the code.</p><button class="button button-outline" id="addProjectBtn" type="button">＋ Add a project</button></div></div>
+      <div class="work-filter-bar reveal" role="group" aria-label="Filter projects">
+        <span class="mono-label">FILTER BY AREA</span>
+        <button class="work-filter is-active" type="button" data-work-filter="all" aria-pressed="true">All work</button>
+        <button class="work-filter" type="button" data-work-filter="software" aria-pressed="false">Software &amp; systems</button>
+        <button class="work-filter" type="button" data-work-filter="machine-learning" aria-pressed="false">AI / Machine learning</button>
+      </div>
+      <div class="project-grid">
+        <article class="project-card project-feature glass reveal" data-tilt data-project-category="software">
+          <div class="project-art resq-art" id="resqArt">
+            <div class="map-grid"></div><div class="resq-radar-sweep"></div><div class="resq-data-points"><i></i><i></i><i></i><i></i></div><svg class="resq-map" viewBox="0 0 620 280" role="img" aria-label="Illustrated disaster response map"><path class="map-road" d="M-20 220 C110 170 100 80 230 92 S370 250 660 65"/><path class="map-road secondary" d="M70 -20 C160 80 250 130 360 100 S500 140 650 250"/><path class="map-route" d="M80 190 C170 165 170 80 310 105 S420 205 540 90"/><circle class="map-zone zone-a" cx="310" cy="105" r="38"/><circle class="map-zone zone-b" cx="310" cy="105" r="65"/><circle class="map-pin" cx="310" cy="105" r="6"/><circle class="map-pin pin-two" cx="535" cy="90" r="5"/><circle class="map-pin pin-three" cx="80" cy="190" r="5"/></svg>
+            <span class="art-label mono-label">RESQ / RESPONSE MAP</span><span class="art-corner mono-label">SIMULATION VISUAL</span><div class="art-live-pill"><i></i> ROUTE MONITORING</div>
+          </div>
+          <div class="project-info"><div class="project-topline"><span class="project-type">01 — DISASTER RESPONSE</span><span class="project-year">ACADEMIC PROJECT</span></div><h3>RESQ — Disaster Response Simulator</h3><p>A software-based simulator concept for organizing response scenarios and supporting structured decision-making during a disaster-response workflow.</p><div class="project-footer"><span class="tag">C / C++</span><span class="tag">DSA</span><span class="tag">SIMULATION</span><button class="project-action" data-project="resq">Explore project ↗</button></div>
+            <label class="upload-chip" for="resqImages">＋ Add project images<input id="resqImages" type="file" accept="image/*" multiple hidden /></label>
+            <div class="project-gallery" id="resqGallery"></div>
+          </div>
+        </article>
+        <article class="project-card glass reveal" data-tilt data-project-category="machine-learning">
+          <div class="project-art water-art" id="waterArt">
+            <div class="water-grid"></div><div class="water-particles"><i></i><i></i><i></i><i></i><i></i></div><div class="water-chart"><svg viewBox="0 0 620 280" preserveAspectRatio="none" aria-label="Animated water demand prediction chart"><path class="chart-area" d="M0 215 C60 190 75 110 150 140 S230 205 290 128 S390 55 440 105 S520 155 620 35 L620 280 L0 280 Z"/><path class="chart-line" d="M0 215 C60 190 75 110 150 140 S230 205 290 128 S390 55 440 105 S520 155 620 35"/><path class="chart-line line-two" d="M0 245 C80 225 95 175 160 190 S270 235 335 175 S450 130 510 155 S570 120 620 98"/></svg></div>
+            <span class="art-label mono-label">URBAN WATER / MODEL VIEW</span><div class="water-stat glass"><span class="mono-label">PREDICTIVE ANALYTICS</span><strong>Water<span>↗</span></strong><small>DEMAND FORECASTING</small></div><div class="art-live-pill"><i></i> DATA FLOW</div>
+          </div>
+          <div class="project-info"><div class="project-topline"><span class="project-type">02 — PREDICTIVE ANALYTICS</span><span class="project-year">PBL PROJECT</span></div><h3>Urban Water Demand Prediction</h3><p>An applied machine-learning project using household and seasonal factors to explore daily water-use prediction.</p><div class="project-footer"><span class="tag">PYTHON</span><span class="tag">MACHINE LEARNING</span><span class="tag">REGRESSION</span><button class="project-action" data-project="water">Explore project ↗</button></div>
+            <label class="upload-chip" for="waterImages">＋ Add project images<input id="waterImages" type="file" accept="image/*" multiple hidden /></label>
+            <div class="project-gallery" id="waterGallery"></div>
+          </div>
+        </article>
+      </div>
+      <div class="project-grid custom-project-grid" id="customProjectGrid" aria-live="polite"></div>
+      <p class="content-note reveal"><span>IMAGE NOTE</span> The cover art is custom animated illustration. Add real screenshots or demo images to make each project case study more personal and verifiable.</p>
+
+      <div class="build-process reveal">
+        <div class="build-process-heading"><span class="mono-label">MY BUILDING PROCESS</span><p>From a problem statement to a working, documented result.</p></div>
+        <div class="process-grid">
+          <article class="process-card glass"><span>01</span><h3>Understand</h3><p>Clarify the problem, inputs, constraints and what a useful result should do.</p></article>
+          <article class="process-card glass"><span>02</span><h3>Plan</h3><p>Break the work into smaller tasks, choose a suitable approach and structure the data flow.</p></article>
+          <article class="process-card glass"><span>03</span><h3>Build &amp; test</h3><p>Implement in iterations, test edge cases, debug and compare alternatives.</p></article>
+          <article class="process-card glass"><span>04</span><h3>Document</h3><p>Record the approach, explain trade-offs and make the work easier to understand and reproduce.</p></article>
+        </div>
+      </div>
+
+      <div class="github-live-panel glass reveal" id="githubLivePanel">
+        <div class="github-live-head">
+          <div><span class="mono-label">GITHUB / LIVE REPOSITORIES</span><h3>Your work, pulled from GitHub.</h3><p>Connect a public GitHub username. New public repositories will appear here automatically when the page refreshes its repository list.</p></div>
+          <div class="github-connect-controls"><label class="form-field"><span>GITHUB USERNAME</span><input id="githubUsernameInput" autocomplete="username" placeholder="your-github-username" /></label><div class="github-connect-actions"><button class="button button-primary" id="connectGithubBtn">Connect & sync</button><button class="button button-outline" id="refreshGithubBtn" title="Refresh repositories">↻ Sync</button></div></div>
+        </div>
+        <div class="sync-status" id="githubSyncStatus" role="status"><span class="sync-dot"></span> Not connected yet. Enter your GitHub username to load public repositories.</div>
+        <div class="github-repo-grid" id="githubRepoGrid"><div class="github-empty"><span class="repo-empty-symbol">GH</span><strong>Your GitHub repositories will appear here.</strong><small>Public repositories only · forks are hidden by default.</small></div></div>
+        <div class="github-live-foot"><span>Auto-refreshes while this page is open · manual Sync is always available.</span><span>PUBLIC REPOSITORIES ONLY</span></div>
+      </div>
+    </section>
+
+    <section class="leetcode-section section-shell" id="leetcode">
+      <div class="section-kicker reveal"><span>03 / LEETCODE LOG</span><span class="kicker-line"></span><span>PROBLEM SOLVING, TRACKED</span></div>
+      <div class="section-title-row reveal"><h2 class="section-heading">One problem at a time.<br /><em>Progress you can see.</em></h2><p class="section-aside">Keep a personal record of problems you've solved or are practising. Add entries manually or import a JSON / CSV file whenever you update your practice.</p></div>
+      <div class="leetcode-panel glass reveal">
+        <div class="leetcode-live-panel">
+          <div class="leetcode-live-head">
+            <div><span class="mono-label">LEETCODE / PUBLIC PROFILE SYNC</span><h3>Your real practice stats.</h3><p>Connect your public LeetCode username to show accepted problems by difficulty, ranking, streak, recent accepted solves, and languages used.</p></div>
+            <div class="leetcode-connect-controls"><label class="form-field"><span>LEETCODE USERNAME</span><input id="leetcodeUsernameInput" autocomplete="username" placeholder="your-leetcode-username" /></label><div class="github-connect-actions"><button class="button button-primary" id="connectLeetcodeBtn">Connect & sync</button><button class="button button-outline" id="refreshLeetcodeBtn" title="Refresh LeetCode statistics">↻ Refresh</button></div></div>
+          </div>
+          <div class="sync-status" id="leetcodeSyncStatus" role="status"><span class="sync-dot"></span> Not connected yet. Enter your LeetCode username to load public profile statistics.</div>
+          <div class="leetcode-live-stats" id="leetcodeLiveStats">
+            <div class="leetcode-live-stat"><strong>—</strong><span>TOTAL SOLVED</span></div><div class="leetcode-live-stat"><strong>—</strong><span>EASY</span></div><div class="leetcode-live-stat"><strong>—</strong><span>MEDIUM</span></div><div class="leetcode-live-stat"><strong>—</strong><span>HARD</span></div><div class="leetcode-live-stat"><strong>—</strong><span>GLOBAL RANK</span></div><div class="leetcode-live-stat"><strong>—</strong><span>CONTEST RATING</span></div><div class="leetcode-live-stat"><strong>—</strong><span>CURRENT STREAK</span></div><div class="leetcode-live-stat"><strong>—</strong><span>ACTIVE DAYS</span></div>
+          </div>
+          <div class="leetcode-insight-grid"><div class="leetcode-insight-card"><div class="insight-title"><span class="mono-label">LANGUAGES USED</span><small>PROBLEMS SOLVED BY LANGUAGE</small></div><div id="leetcodeLanguages" class="language-bars"><div class="language-empty">Language statistics will appear after you connect your profile.</div></div></div><div class="leetcode-insight-card"><div class="insight-title"><span class="mono-label">RECENT ACCEPTED SOLVES</span><small>LATEST PUBLIC ACTIVITY</small></div><div id="leetcodeRecent" class="recent-solve-list"><div class="language-empty">Recent accepted problems will appear here.</div></div></div></div>
+          <div class="leetcode-live-foot"><span>Public profile data · cached briefly to avoid repeated requests.</span><span id="leetcodeLastUpdated">NOT SYNCED</span></div>
+        </div>
+        <div class="leetcode-local-divider"><span>YOUR PERSONAL PRACTICE JOURNAL</span><i></i><small>MANUAL ENTRIES / IMPORTED NOTES</small></div>
+        <div class="leetcode-top"><div class="lc-brand"><span class="lc-mark">⌘</span><div><strong>LeetCode practice log</strong><small>YOUR PERSONAL PROBLEM JOURNAL</small></div></div><div class="lc-actions"><button class="button button-soft" id="addProblemBtn">＋ Add problem</button><label class="button button-outline" for="problemImport">↑ Import CSV / JSON<input type="file" id="problemImport" accept=".json,.csv,application/json,text/csv" hidden /></label><button class="icon-button" id="exportProblems" title="Export your problem log" aria-label="Export problems">↓</button></div></div>
+        <div class="lc-stats"><div class="lc-stat"><span id="problemCount">0</span><small>JOURNAL ENTRIES</small></div><div class="lc-stat"><span id="solvedCount">0</span><small>JOURNAL SOLVED</small></div><div class="lc-stat"><span id="topicCount">0</span><small>TOPICS COVERED</small></div><div class="lc-stat lc-stat-note"><span class="live-dot"></span><small>LOCALLY SAVED IN THIS BROWSER</small></div></div>
+        <div class="lc-toolbar"><label class="search-box"><span>⌕</span><input id="problemSearch" type="search" placeholder="Search title, topic or notes" /></label><select id="problemFilter" aria-label="Filter problems"><option value="all">All problems</option><option value="solved">Solved</option><option value="practising">Practising</option></select></div>
+        <div class="problem-list" id="problemList"><div class="empty-state"><span class="empty-icon">⌁</span><strong>Your problem log starts here.</strong><p>Add a LeetCode problem or import your existing list. Your entries will appear here.</p><button class="text-link" id="emptyAddProblem">Add your first problem →</button></div></div>
+        <div class="lc-footnote">By default, this journal saves in the current browser. After the owner connects cloud storage and publishes, the saved portfolio journal can be loaded by visitors on other devices. This is separate from LeetCode's own account data.</div>
+      </div>
+    </section>
+
+    <section class="skills-section section-shell" id="skills">
+      <div class="section-kicker reveal"><span>04 / TOOLKIT</span><span class="kicker-line"></span><span>WHAT I'M LEARNING & USING</span></div>
+      <div class="skills-layout"><div><h2 class="section-heading reveal">Tools are useful.<br /><em>Thinking matters more.</em></h2><p class="section-aside reveal">A living snapshot of topics you've been exploring. Add new skills or concepts as your learning grows — no made-up proficiency percentages.</p><button class="button button-outline reveal" id="addLearningBtn">＋ Add a learning entry</button></div><div class="skill-panel glass reveal" id="learningPanel">
+        <div class="skill-group"><span class="mono-label">PROGRAMMING</span><div class="skill-pills"><span>C</span><span>C++</span><span>Python</span></div></div><div class="skill-divider"></div>
+        <div class="skill-group"><span class="mono-label">COMPUTER SCIENCE</span><div class="skill-pills"><span>Data Structures</span><span>Linked Lists</span><span>Problem Solving</span><span>OOP — practising</span></div></div><div class="skill-divider"></div>
+        <div class="skill-group"><span class="mono-label">AI / DATA · COURSEWORK &amp; PROJECTS</span><div class="skill-pills"><span>Machine Learning</span><span>Linear Regression</span><span>KNN</span><span>K-Means</span><span>SVM</span><span>Decision Trees</span><span>Feature Scaling</span><span>PCA</span><span>Model Evaluation</span></div></div><div class="skill-divider"></div>
+        <div class="skill-group"><span class="mono-label">TOOLS &amp; CLOUD</span><div class="skill-pills"><span>Git / GitHub</span><span>VS Code</span><span>Jupyter Notebook</span><span>AWS IAM</span><span>Amazon EC2</span></div></div>
+        <div class="skill-footnote">TOPICS SHOWN AS LEARNING AREAS — NOT CERTIFIED PROFICIENCY CLAIMS.</div>
+      </div></div>
+    </section>
+
+    <section class="education-section section-shell" id="education">
+      <div class="section-kicker reveal"><span>05 / EDUCATION</span><span class="kicker-line"></span><span>ACADEMIC FOUNDATION</span></div>
+      <div class="education-grid">
+        <div class="education-copy reveal"><h2 class="section-heading">Building the<br /><em>foundations.</em></h2><p class="section-aside">My academic path gives me the structure to explore computer science, programming and applied machine learning through coursework and projects.</p></div>
+        <article class="education-card glass reveal"><div class="education-card-top"><span class="mono-label">CURRENT DEGREE</span><span class="education-status"><i></i> STUDENT</span></div><div class="education-mark">CS<span>+</span></div><h3>B.Tech — Computer Science &amp; Engineering</h3><p class="education-focus">Focus area · Artificial Intelligence &amp; Machine Learning</p><div class="education-details"><div><small>LEARNING THROUGH</small><strong>Coursework · Labs · Projects</strong></div><div><small>ACADEMIC THEMES</small><strong>Programming · DSA · ML · Systems</strong></div></div><p class="education-note">Institution name, academic dates and grades can be added once the exact details are confirmed.</p></article>
+      </div>
+    </section>
+
+    <section class="credentials-section section-shell" id="credentials">
+      <div class="credential-atmosphere" aria-hidden="true"><video class="credential-atmosphere-video" autoplay muted loop playsinline preload="metadata"><source src="assets/network-tunnel-atmosphere.mp4" type="video/mp4"></video><span></span></div>
+      <div class="section-kicker reveal"><span>06 / CERTIFICATES & CREDENTIALS</span><span class="kicker-line"></span><span>SELECTED LEARNING & ACHIEVEMENTS</span></div>
+      <div class="section-title-row reveal"><h2 class="section-heading">Learning leaves<br /><em>a trail.</em></h2><div><p class="section-aside">A curated selection of your AWS AI/ML and cloud learning completions, plus event participation and the AWS Builder Challenge achievement. Course-completion records are labelled separately from professional certifications.</p><button class="button button-outline" id="addCredentialBtn">＋ Add a credential</button></div></div>
+      <div class="credential-grid" id="credentialGrid"><div class="credential-empty glass"><span class="empty-icon">✳</span><strong>No credentials added yet.</strong><p>Your selected certificates are loaded below. Use “Add a credential” for future verified certificates, badges, workshops or awards.</p></div></div>
+    </section>
+
+    <section class="notes-section section-shell" id="notes">
+      <div class="section-kicker reveal"><span>07 / TECHNICAL NOTES</span><span class="kicker-line"></span><span>LEARNING, CAPTURED</span></div>
+      <div class="section-title-row reveal"><h2 class="section-heading">Small discoveries.<br /><em>Useful notes.</em></h2><div><p class="section-aside">Save short explanations and debugging lessons. Connect cloud storage to publish your notes and project updates across devices and for visitors.</p><div class="notes-actions"><button class="button button-primary" id="addNoteBtn" type="button">＋ Add a note</button><button class="button button-outline" id="exportNotesBtn" type="button">Export notes ↓</button><button class="button button-outline" id="cloudSyncBtn" type="button">☁ Owner sign-in</button></div></div></div>
+      <div class="cloud-sync-status glass" id="cloudSyncStatus" role="status"><span class="cloud-status-dot"></span><span id="cloudSyncStatusText">Local preview mode — configure cloud storage to publish your updates across devices.</span></div>
+      <div class="quick-notes glass" aria-label="Rotating coding notes">
+        <div class="quick-notes-header"><div><span class="mono-label">QUICK CONCEPTS</span><span class="quick-notes-subtitle">11 short reminders · changes automatically</span></div><span class="quick-note-counter" id="quickNoteCounter">01 / 11</span></div>
+        <div class="quick-note-body" id="quickNoteBody" aria-live="polite"><span class="quick-note-topic">DATA STRUCTURES</span><h3>Small concepts, revisited often.</h3><p>Useful reminders will rotate here.</p></div>
+        <div class="quick-notes-controls"><div class="quick-progress-track"><span id="quickNoteProgress"></span></div><div class="quick-note-buttons"><button type="button" id="quickNotePrev" aria-label="Previous note">←</button><button type="button" id="quickNotePause" aria-label="Pause automatic notes">Ⅱ</button><button type="button" id="quickNoteNext" aria-label="Next note">→</button></div></div>
+      </div>
+      <div class="notes-grid" id="notesGrid"><div class="notes-empty glass"><span class="empty-icon">⌁</span><strong>Your technical notebook is ready.</strong><p>Add a concept, a debugging lesson or a resource you want to remember.</p></div></div>
+      <div class="resource-strip reveal"><span class="mono-label">REFERENCE LINKS</span><a href="https://docs.python.org/3/" target="_blank" rel="noopener noreferrer">Python docs ↗</a><a href="https://scikit-learn.org/stable/user_guide.html" target="_blank" rel="noopener noreferrer">Scikit-learn guide ↗</a><a href="https://docs.github.com/" target="_blank" rel="noopener noreferrer">GitHub docs ↗</a><a href="https://leetcode.com/problemset/" target="_blank" rel="noopener noreferrer">LeetCode problems ↗</a></div>
+    </section>
+
+    <section class="journey-section section-shell" id="journey">
+      <div class="section-kicker reveal"><span>07 / JOURNEY</span><span class="kicker-line"></span><span>LEARNING IN PUBLIC</span></div>
+      <div class="journey-grid"><div><h2 class="section-heading reveal">Still learning.<br /><em>Always moving.</em></h2><div class="journey-focus glass reveal"><span class="mono-label">CURRENT FOCUS</span><strong>Linked lists · C/C++ practice · applied ML</strong><small>Focus areas can change as new topics and projects are added.</small></div></div><div class="timeline"><div class="timeline-item reveal"><span class="timeline-index">01</span><div><span class="mono-label">EDUCATION</span><h3>B.Tech — Computer Science &amp; Engineering</h3><p>Focus area: Artificial Intelligence &amp; Machine Learning. Institution and graduation details can be filled in after confirmation.</p></div></div><div class="timeline-item reveal"><span class="timeline-index">02</span><div><span class="mono-label">CURRENT PRACTICE</span><h3>Programming, DSA &amp; applied ML</h3><p>Strengthening fundamentals through coding practice, coursework, and project iterations.</p></div></div><div class="timeline-item reveal"><span class="timeline-index">03</span><div><span class="mono-label">NEXT MILESTONE</span><h3>Build, document, improve</h3><p>Turn practice into clear project write-ups, useful tools, and a stronger public development profile.</p></div></div></div></div>
+    </section>
+
+    <section class="connect-section section-shell" id="connect">
+      <div class="section-kicker reveal"><span>08 / CONNECT</span><span class="kicker-line"></span><span>FIND ME AROUND THE WEB</span></div>
+      <div class="section-title-row reveal"><h2 class="section-heading">Let's connect.<br /><em>At your own pace.</em></h2><div><p class="section-aside">Choose a platform to preview the destination first. Your browser will only open the external profile after you press the final button.</p><button class="text-link manage-links" id="manageLinksBtn">Manage my profile links ⚙</button></div></div>
+      <div class="social-grid reveal">
+        <button class="social-card glass" data-portal="github"><span class="social-icon">GH</span><span><strong>GitHub</strong><small>Code, repositories & projects</small></span><b>↗</b></button>
+        <button class="social-card glass" data-portal="leetcode"><span class="social-icon lc-icon">LC</span><span><strong>LeetCode</strong><small>Problem solving & practice</small></span><b>↗</b></button>
+        <button class="social-card glass" data-portal="linkedin"><span class="social-icon">in</span><span><strong>LinkedIn</strong><small>Professional profile</small></span><b>↗</b></button>
+        <button class="social-card glass" data-portal="instagram"><span class="social-icon">IG</span><span><strong>Instagram</strong><small>Personal / social</small></span><b>↗</b></button>
+        <button class="social-card glass" data-portal="x"><span class="social-icon">X</span><span><strong>X / Twitter</strong><small>Thoughts & updates</small></span><b>↗</b></button>
+        <button class="social-card glass" data-portal="email"><span class="social-icon">＠</span><span><strong>Email</strong><small>Direct contact</small></span><b>↗</b></button>
+        <button class="social-card glass" data-portal="resume"><span class="social-icon">CV</span><span><strong>Resume</strong><small>Experience, education & skills</small></span><b>↗</b></button>
+      </div>
+      <div class="custom-social-row" id="customSocialRow"></div>
+    </section>
+
+    <section class="contact-section section-shell">
+      <div class="contact-card glass reveal"><div class="section-kicker"><span>09 / NEXT CHAPTER</span><span class="kicker-line"></span><span>OPEN TO LEARNING & COLLABORATION</span></div><div class="contact-main"><div><span class="mono-label">HAVE A PROJECT OR AN IDEA?</span><h2>Let's make<br /><em>something useful.</em></h2></div><a class="contact-orb" href="#connect" aria-label="Go to contact links">↗</a></div><div class="contact-bottom"><p>This portfolio will keep evolving as I learn, build, and document more work. Add a verified email address in Manage my profile links to enable direct inquiries.</p><span class="mono-label">DESIGNED TO GROW WITH THE WORK.</span></div></div>
+    </section>
+  </main>
+
+  <footer class="site-footer section-shell"><a class="brand" href="#home"><span class="brand-mark">N</span><span>NITIN<span class="brand-dot">.</span></span></a><span>© <span id="year"></span> NITIN SINGH · BUILT WITH CURIOSITY</span><a href="#top">BACK TO TOP ↑</a></footer>
+
+  <dialog class="app-dialog" id="appDialog" aria-labelledby="dialogTitle"><div class="dialog-shell glass"><div class="dialog-head"><div><span class="mono-label" id="dialogEyebrow">PORTFOLIO / INTERACTION</span><h2 id="dialogTitle">Details</h2></div><button class="dialog-close" id="dialogClose" aria-label="Close dialog">×</button></div><div class="dialog-content" id="dialogContent"></div></div></dialog>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="cloud-config.js"></script>
+  <script src="profile-config.js"></script>
+  <script src="script.js"></script>
+  <script src="redesign-v14.js"></script>
+</body>
+</html>

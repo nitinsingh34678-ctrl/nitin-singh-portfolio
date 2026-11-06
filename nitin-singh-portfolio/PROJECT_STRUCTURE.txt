@@ -1,0 +1,22 @@
+Portfolio project structure
+
+index.html                    Main page
+style.css                     Base styles
+redesign-v14.css              Portfolio visual redesign
+script.js                     Main interactions and application logic
+redesign-v14.js               Additional visual interactions
+profile-config.js             Public profile links and profile details
+cloud-config.js               Supabase URL, publishable key, and owner email
+SUPABASE_SETUP.md              Supabase and deployment setup notes
+OWNER_MAGIC_LINK_TEMPLATE.html Supabase magic-link email template
+
+auth/confirm.html             Secure magic-link callback
+supabase/schema.sql           Database table and RLS policies
+
+assets/                       Portraits, backgrounds, and certificate PDFs
+
+Important:
+- Keep the filenames and relative paths above unchanged; index.html references them.
+- Before publishing, replace PASTE_YOUR_SB_PUBLISHABLE_KEY_HERE in cloud-config.js
+  with the project's sb_publishable_... key.
+- Never put a Supabase secret/service_role key or database password in frontend files.
