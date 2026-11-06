@@ -1264,44 +1264,29 @@
       return;
     }
     if (!cfg.enabled || !cfg.supabaseUrl || !cfg.supabaseAnonKey || !cfg.ownerEmail) { cloudSetupDialog(); return; }
-    openDialog('Owner sign-in', 'CLOUD / EMAIL OTP', `<p class="dialog-description">Only the configured owner email can unlock editing. Enter the six-digit code sent to your inbox. Visitors remain read-only.</p><form id="cloudLoginForm" class="settings-form"><label class="form-field"><span>Owner email</span><input name="email" type="email" autocomplete="email" required value="${escapeHTML(cfg.ownerEmail || '')}" placeholder="you@example.com" /></label><div class="dialog-actions"><button class="button button-primary" type="submit">Send verification code</button></div></form>`, () => {
+    openDialog('Owner sign-in', 'CLOUD / EMAIL LINK', `<p class="dialog-description">Only the configured owner email can unlock editing. Supabase will email you a one-time sign-in link. Open that email on this device and tap the link to finish signing in. Visitors remain read-only.</p><form id="cloudLoginForm" class="settings-form"><label class="form-field"><span>Owner email</span><input name="email" type="email" autocomplete="email" required value="${escapeHTML(cfg.ownerEmail || '')}" placeholder="you@example.com" /></label><div class="dialog-actions"><button class="button button-primary" type="submit">Send owner sign-in link</button></div><p class="dialog-hint" id="cloudLoginMessage" role="status" aria-live="polite"></p></form>`, () => {
       $('#cloudLoginForm', dialogContent).addEventListener('submit', async (event) => {
         event.preventDefault();
         const form = event.currentTarget;
-        if (form.dataset.codeSent === 'true') return;
+        if (form.dataset.linkSent === 'true') return;
         const email = new FormData(form).get('email').toString().trim();
         if (!cfg.ownerEmail || email.toLowerCase() !== cfg.ownerEmail.trim().toLowerCase()) { alert('Use the configured portfolio owner email.'); return; }
         const submitButton = form.querySelector('button[type="submit"]');
-        submitButton.disabled = true; submitButton.textContent = 'Sending code…';
-        const { error } = await cloudClient.auth.signInWithOtp({ email, options: { shouldCreateUser: false } });
-        if (error) { submitButton.disabled = false; submitButton.textContent = 'Send verification code'; alert(`Could not send verification code: ${error.message}`); return; }
-        form.dataset.codeSent = 'true';
-        form.innerHTML = `<p class="dialog-hint">A six-digit verification code was sent to <strong>${escapeHTML(email)}</strong>. Enter it below. The code expires, so request a new one if needed.</p><label class="form-field"><span>Six-digit verification code</span><input name="token" type="text" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" minlength="6" required placeholder="123456" /></label><div class="dialog-actions"><button class="button button-primary" type="submit">Verify and unlock editing</button><button class="button button-outline" id="resendOwnerCode" type="button">Resend code</button></div>`;
-        form.addEventListener('submit', async (verifyEvent) => {
-          verifyEvent.preventDefault();
-          const token = new FormData(form).get('token').toString().replace(/\s/g, '');
-          if (!/^\d{6}$/.test(token)) { alert('Enter the six-digit code from your email.'); return; }
-          const verifyButton = form.querySelector('button[type="submit"]');
-          verifyButton.disabled = true; verifyButton.textContent = 'Verifying…';
-          const { data, error: verifyError } = await cloudClient.auth.verifyOtp({ email, token, type: 'email' });
-          if (verifyError) { verifyButton.disabled = false; verifyButton.textContent = 'Verify and unlock editing'; alert(`Verification failed: ${verifyError.message}`); return; }
-          if (String(data?.user?.email || data?.session?.user?.email || '').trim().toLowerCase() !== cfg.ownerEmail.trim().toLowerCase()) {
-            await cloudClient.auth.signOut(); alert('This account is not the configured portfolio owner.'); return;
-          }
-          closeDialog();
-          document.body.classList.add('owner-mode');
-          cloudSession = data.session;
-          setCloudStatus('Owner signed in · edits can now be published to the live portfolio.', 'success');
-          await loadCloudState(true);
-          mergeLocalDraftIntoPublishedState(preCloudLocalDraft);
-          await saveCloudState();
-        }, { once: true });
-        $('#resendOwnerCode', form).addEventListener('click', async () => {
-          const { error: resendError } = await cloudClient.auth.signInWithOtp({ email, options: { shouldCreateUser: false } });
-          if (resendError) alert(`Could not resend code: ${resendError.message}`);
-          else alert('A new verification code has been sent.');
+        const message = $('#cloudLoginMessage', form);
+        submitButton.disabled = true; submitButton.textContent = 'Sending sign-in link…';
+        const redirectTo = new URL('auth/confirm.html', window.location.href).href;
+        const { error } = await cloudClient.auth.signInWithOtp({
+          email,
+          options: { shouldCreateUser: false, emailRedirectTo: redirectTo }
         });
-        form.querySelector('input[name="token"]').focus();
+        if (error) {
+          submitButton.disabled = false; submitButton.textContent = 'Send owner sign-in link';
+          if (message) message.textContent = `Could not send sign-in email: ${error.message}`;
+          return;
+        }
+        form.dataset.linkSent = 'true';
+        submitButton.textContent = 'Sign-in email sent';
+        if (message) message.textContent = `A one-time sign-in link was sent to ${email}. Open the email on this same device and tap “Sign in”. If it is not in your inbox, check Spam. Do not request repeated emails; Supabase rate limits apply.`;
       });
     });
   }
